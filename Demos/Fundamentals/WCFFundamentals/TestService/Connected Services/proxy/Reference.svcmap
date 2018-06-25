@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="230936c3-4220-4ca0-a63e-f19560a3f3b1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50473/OperacionesMatematicas.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OperacionesMatematicas.wsdl" MetadataType="Wsdl" ID="acf723bd-2cd9-40fc-b228-4b3a23824f83" SourceId="1" SourceUrl="http://localhost:50473/OperacionesMatematicas.svc?wsdl" />
+    <MetadataFile FileName="OperacionesMatematicas.xsd" MetadataType="Schema" ID="c17186ec-b22a-4e86-928e-6b606dc562f8" SourceId="1" SourceUrl="http://localhost:50473/OperacionesMatematicas.svc?xsd=xsd4" />
+    <MetadataFile FileName="OperacionesMatematicas.disco" MetadataType="Disco" ID="bf4546ac-2208-4bdc-ae4d-3d765faa7b9e" SourceId="1" SourceUrl="http://localhost:50473/OperacionesMatematicas.svc?disco" />
+    <MetadataFile FileName="OperacionesMatematicas1.xsd" MetadataType="Schema" ID="01f2790e-834b-4cf9-a75c-cfaf0eddbb23" SourceId="1" SourceUrl="http://localhost:50473/OperacionesMatematicas.svc?xsd=xsd2" />
+    <MetadataFile FileName="OperacionesMatematicas1.wsdl" MetadataType="Wsdl" ID="7c57a63b-a9c7-4aa6-beef-c733afaf31db" SourceId="1" SourceUrl="http://localhost:50473/OperacionesMatematicas.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="OperacionesMatematicas2.xsd" MetadataType="Schema" ID="2404c67a-cbe4-43dc-be77-7867aaf4c4f2" SourceId="1" SourceUrl="http://localhost:50473/OperacionesMatematicas.svc?xsd=xsd0" />
+    <MetadataFile FileName="OperacionesMatematicas3.xsd" MetadataType="Schema" ID="f8ec678f-df0b-4145-9a39-37ee71d691f1" SourceId="1" SourceUrl="http://localhost:50473/OperacionesMatematicas.svc?xsd=xsd3" />
+    <MetadataFile FileName="OperacionesMatematicas4.xsd" MetadataType="Schema" ID="43a10446-c58e-4b1f-a018-3f12b21e4998" SourceId="1" SourceUrl="http://localhost:50473/OperacionesMatematicas.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

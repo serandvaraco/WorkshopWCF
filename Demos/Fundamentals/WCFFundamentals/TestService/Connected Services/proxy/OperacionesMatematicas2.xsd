@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://unespacioparanet.com" elementFormDefault="qualified" targetNamespace="http://unespacioparanet.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:50473/OperacionesMatematicas.svc?xsd=xsd2" namespace="http://unespacioparanet.com/DataContracts" />
+  <xs:import schemaLocation="http://localhost:50473/OperacionesMatematicas.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCFFundamentals" />
+  <xs:element name="Sumar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="n1" type="xs:double" />
+        <xs:element minOccurs="0" name="n2" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SumarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://unespacioparanet.com/DataContracts" minOccurs="0" name="SumarResult" nillable="true" type="q1:ComplexNumber" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Resta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="n1" type="xs:double" />
+        <xs:element minOccurs="0" name="n2" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RestaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://unespacioparanet.com/DataContracts" minOccurs="0" name="RestaResult" nillable="true" type="q2:ComplexNumber" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Multiplica">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="n1" type="xs:double" />
+        <xs:element minOccurs="0" name="n2" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MultiplicaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://unespacioparanet.com/DataContracts" minOccurs="0" name="MultiplicaResult" nillable="true" type="q3:ComplexNumber" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Divide">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="n1" type="xs:double" />
+        <xs:element minOccurs="0" name="n2" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DivideResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://unespacioparanet.com/DataContracts" minOccurs="0" name="DivideResult" nillable="true" type="q4:ComplexNumber" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFigure">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFigureResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCFFundamentals" minOccurs="0" name="GetFigureResult" nillable="true" type="q5:Circle" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Catalog">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CatalogResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCFFundamentals" minOccurs="0" name="CatalogResult" nillable="true" type="q6:LibraryCatalog" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Numbers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NumbersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCFFundamentals" minOccurs="0" name="NumbersResult" nillable="true" type="q7:MathOperationData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCar">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCFFundamentals" minOccurs="0" name="GetCarResult" nillable="true" type="q8:Car" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

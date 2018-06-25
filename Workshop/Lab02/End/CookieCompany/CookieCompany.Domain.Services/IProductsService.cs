@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
-
-namespace CookieCompany.Domain.Services
+﻿namespace CookieCompany.Domain.Services
 {
-    // NOTA: puede usar el comando "Rename" del menú "Refactorizar" para cambiar el nombre de interfaz "IProductsService" en el código y en el archivo de configuración a la vez.
+    using CookieCompany.Model.Services.Fluent;
+    using System.Collections.Generic;
+    using System.ServiceModel;
+
     [ServiceContract]
     public interface IProductsService
     {
         [OperationContract]
-        IEnumerable<string> GetProducts();
+        IEnumerable<ProductDto> GetProducts();
 
         [OperationContract]
-        string GetProductsById(int id);
+        ProductDto GetProductsById(int id);
+
+        [OperationContract]
+        void AddProduct(ProductDto product);
     }
 }

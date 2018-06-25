@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFFundamentals" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFFundamentals" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:50473/OperacionesMatematicas.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="Circle">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Shape">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Radial" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Circle" nillable="true" type="tns:Circle" />
+  <xs:complexType name="Shape">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="x" type="xs:int" />
+      <xs:element minOccurs="0" name="y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Shape" nillable="true" type="tns:Shape" />
+  <xs:complexType name="LibraryCatalog">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="theCatalog" nillable="true" type="q1:ArrayOfKeyValueOfanyTypeanyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LibraryCatalog" nillable="true" type="tns:LibraryCatalog" />
+  <xs:complexType name="Book">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Book" nillable="true" type="tns:Book" />
+  <xs:complexType name="Magazine">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Magazine" nillable="true" type="tns:Magazine" />
+  <xs:complexType name="MathOperationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Numbers" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MathOperationData" nillable="true" type="tns:MathOperationData" />
+  <xs:complexType name="Car">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Condition" type="tns:CarConditionEnum" />
+      <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Car" nillable="true" type="tns:Car" />
+  <xs:simpleType name="CarConditionEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="New" />
+      <xs:enumeration value="Usado" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CarConditionEnum" nillable="true" type="tns:CarConditionEnum" />
+</xs:schema>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://unespacioparanet.com/DataContracts" elementFormDefault="qualified" targetNamespace="http://unespacioparanet.com/DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ComplexNumber">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Resultado" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComplexNumber" nillable="true" type="tns:ComplexNumber" />
+</xs:schema>
