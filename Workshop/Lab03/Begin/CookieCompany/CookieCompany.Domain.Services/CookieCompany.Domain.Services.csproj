@@ -72,13 +72,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IProductsService.cs" />
-    <Compile Include="ProductsService.svc.cs">
-      <DependentUpon>ProductsService.svc</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -89,6 +84,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CookieCompany.Domain.Host\CookieCompany.Domain.Host.csproj">
+      <Project>{050600fe-46ce-48b4-94d7-b0b7e39b81c2}</Project>
+      <Name>CookieCompany.Domain.Host</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CookieCompany.DomainCore\CookieCompany.DomainCore.csproj">
+      <Project>{d49fcd4e-9329-48be-b0b8-6d07a7952917}</Project>
+      <Name>CookieCompany.DomainCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CookieCompany.Model\CookieCompany.Model.csproj">
       <Project>{614d2d9d-5fff-49b7-b91d-6034a55e393a}</Project>
       <Name>CookieCompany.Model</Name>
@@ -109,7 +112,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53797</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53797/</IISUrl>
+          <IISUrl>http://localhost:53798/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,16 +1,14 @@
 namespace CookieCompany.Model.Context
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
+    using System.Threading.Tasks;
 
-    public partial class CookieCompanyModel : DbContext
+    public partial class CookieCompanyModel : DbContext, ICookieCompanyModel
     {
         public CookieCompanyModel()
             : base("name=CookieCompanyModel")
         {
-            this.Configuration.LazyLoadingEnabled = false; 
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<Invent> Invent { get; set; }
@@ -27,5 +25,8 @@ namespace CookieCompany.Model.Context
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
         }
+
+        Task ICookieCompanyModel.SaveChangesAsync() => SaveChangesAsync();
+
     }
 }

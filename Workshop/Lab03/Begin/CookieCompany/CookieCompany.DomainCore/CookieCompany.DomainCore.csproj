@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -41,13 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICatalog.cs" />
+    <Compile Include="Exceptions\ProductNotFoundException.cs" />
+    <Compile Include="Exceptions\CatalogException.cs" />
+    <Compile Include="Manage\CatalogProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Triggers\CatalogEventArgs.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Exceptions\" />
-    <Folder Include="Manage\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\CookieCompany.Common\CookieCompany.Common.csproj">
+      <Project>{f0080fec-73a8-4509-bea6-985b026a2f13}</Project>
+      <Name>CookieCompany.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CookieCompany.Model.Fluent\CookieCompany.Model.Fluent.csproj">
       <Project>{4266d060-ee35-46d8-8dca-3c81a457a9a7}</Project>
       <Name>CookieCompany.Model.Fluent</Name>
@@ -56,6 +69,10 @@
       <Project>{614D2D9D-5FFF-49B7-B91D-6034A55E393A}</Project>
       <Name>CookieCompany.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
