@@ -1,0 +1,3 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" 
+    Service="CookieCompany.Domain.Host.Services.CatalogService" 
+    CodeBehind="CookieCompany.Domain.Host.Services.CatalogService.cs" %>

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        /*Selector*/
+        h1 {
+            color: blue;
+            text-align: center;
+            border: 1px solid #5ad11e;
+        }
+
+        table {
+            border: 2px dashed red;
+        }
+
+        input {
+            background-color: transparent;
+        }
+
+        .contenedor {
+            width: 100%;
+        }
+
+        .left {
+            width: 30%;
+            float: left;
+        }
+
+        .right {
+            width: 70%;
+            float: right;
+        }
+
+        .titulo {
+            color: green;
+            text-align: right;
+            font-family: 'Segoe UI';
+            font-size: large;
+             
+        }
+
+        a {
+            text-decoration:none;
+        }
+
+        a:hover{
+            text-decoration:underline; 
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1 class="titulo">Iniciar sesión</h1>
+        @RenderBody()
+        @RenderSection("script", false)
+    </div>
+</body>
+</html>
