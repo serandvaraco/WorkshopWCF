@@ -49,10 +49,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\CookieCompanyModel.cs" />
+    <Compile Include="Context\CookieCompanyDBEntities.cs" />
+    <Compile Include="Context\CookieCompanyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CookieCompanyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\CookieCompanyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CookieCompanyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\CookieCompanyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CookieCompanyModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Context\ICookieCompanyModel.cs" />
-    <Compile Include="Context\Invent.cs" />
-    <Compile Include="Context\Product.cs" />
+    <Compile Include="Context\Invent.cs">
+      <DependentUpon>CookieCompanyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Product.cs">
+      <DependentUpon>CookieCompanyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,8 +82,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Context\CookieCompanyModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CookieCompanyModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Context\CookieCompanyModel.edmx.diagram">
+      <DependentUpon>CookieCompanyModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Context\CookieCompanyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CookieCompanyModel.edmx</DependentUpon>
+      <LastGenOutput>CookieCompanyModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Context\CookieCompanyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CookieCompanyModel.edmx</DependentUpon>
+      <LastGenOutput>CookieCompanyModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

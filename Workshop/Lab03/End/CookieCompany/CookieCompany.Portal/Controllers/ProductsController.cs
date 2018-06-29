@@ -14,6 +14,7 @@ namespace CookieCompany.Portal.Controllers
         {
             var products = await this.serviceClient.GetProductsAsync();
             return View(products);
+
         }
 
         public ActionResult Create() => View();

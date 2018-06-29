@@ -13,7 +13,6 @@
 
 namespace unespacioparanet.com.services.datacontrac.products
 {
-    using System.ComponentModel.DataAnnotations;
     using System.Runtime.Serialization;
 
 
@@ -57,9 +56,6 @@ namespace unespacioparanet.com.services.datacontrac.products
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
-        [Required]
-        [StringLength(50)]
-        [Display(Name = "Nombre de producto")]
         public string Name
         {
             get
@@ -72,9 +68,7 @@ namespace unespacioparanet.com.services.datacontrac.products
             }
         }
 
-        [DataType(DataType.Upload)]
-        [Display(Name = "Subir Fotografía")]
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string UrlImage
         {
             get
@@ -160,147 +154,149 @@ namespace unespacioparanet.com.services.datacontrac.Fault
     }
 }
 
-
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-[System.ServiceModel.ServiceContractAttribute(Namespace = "https://unespacioparanet.com/services/contracts/products", ConfigurationName = "IProductContractService")]
-public interface IProductContractService
+namespace unespacioparanet.com.services
 {
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace = "https://unespacioparanet.com/services/contracts/products", ConfigurationName = "IProductContractService")]
+    public interface IProductContractService
+    {
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "AddProductAsync", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "AddProductAsyncResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(unespacioparanet.com.services.datacontrac.Fault.FaultCatalog), Action = "https://unespacioparanet.com/services/contracts/products/fault/add", Name = "FaultCatalog", Namespace = "https://unespacioparanet.com/services/datacontrac/Fault")]
-    void AddProductAsync(unespacioparanet.com.services.datacontrac.products.Product product);
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "AddProductAsync", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "AddProductAsyncResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(unespacioparanet.com.services.datacontrac.Fault.FaultCatalog), Action = "https://unespacioparanet.com/services/contracts/products/fault/add", Name = "FaultCatalog", Namespace = "https://unespacioparanet.com/services/datacontrac/Fault")]
+        void AddProductAsync(unespacioparanet.com.services.datacontrac.products.Product product);
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "AddProductAsync", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "AddProductAsyncResponse")]
-    System.Threading.Tasks.Task AddProductAsyncAsync(unespacioparanet.com.services.datacontrac.products.Product product);
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "AddProductAsync", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "AddProductAsyncResponse")]
+        System.Threading.Tasks.Task AddProductAsyncAsync(unespacioparanet.com.services.datacontrac.products.Product product);
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "RemoveProduct", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "RemoveProductResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(unespacioparanet.com.services.datacontrac.Fault.FaultCatalog), Action = "https://unespacioparanet.com/services/contracts/products/fault/remove", Name = "FaultCatalog", Namespace = "https://unespacioparanet.com/services/datacontrac/Fault")]
-    void RemoveProduct(int id);
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "RemoveProduct", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "RemoveProductResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(unespacioparanet.com.services.datacontrac.Fault.FaultCatalog), Action = "https://unespacioparanet.com/services/contracts/products/fault/remove", Name = "FaultCatalog", Namespace = "https://unespacioparanet.com/services/datacontrac/Fault")]
+        void RemoveProduct(int id);
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "RemoveProduct", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "RemoveProductResponse")]
-    System.Threading.Tasks.Task RemoveProductAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "RemoveProduct", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "RemoveProductResponse")]
+        System.Threading.Tasks.Task RemoveProductAsync(int id);
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "updateProduct", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "updateProductResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(unespacioparanet.com.services.datacontrac.Fault.FaultCatalog), Action = "https://unespacioparanet.com/services/contracts/products/fault/update", Name = "FaultCatalog", Namespace = "https://unespacioparanet.com/services/datacontrac/Fault")]
-    void updateProduct(unespacioparanet.com.services.datacontrac.products.Product product);
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "updateProduct", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "updateProductResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(unespacioparanet.com.services.datacontrac.Fault.FaultCatalog), Action = "https://unespacioparanet.com/services/contracts/products/fault/update", Name = "FaultCatalog", Namespace = "https://unespacioparanet.com/services/datacontrac/Fault")]
+        void updateProduct(unespacioparanet.com.services.datacontrac.products.Product product);
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "updateProduct", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "updateProductResponse")]
-    System.Threading.Tasks.Task updateProductAsync(unespacioparanet.com.services.datacontrac.products.Product product);
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "updateProduct", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "updateProductResponse")]
+        System.Threading.Tasks.Task updateProductAsync(unespacioparanet.com.services.datacontrac.products.Product product);
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "GetProducts", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "GetProductsResponse")]
-    unespacioparanet.com.services.datacontrac.products.Product[] GetProducts();
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "GetProducts", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "GetProductsResponse")]
+        unespacioparanet.com.services.datacontrac.products.Product[] GetProducts();
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "GetProducts", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "GetProductsResponse")]
-    System.Threading.Tasks.Task<unespacioparanet.com.services.datacontrac.products.Product[]> GetProductsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "GetProducts", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "GetProductsResponse")]
+        System.Threading.Tasks.Task<unespacioparanet.com.services.datacontrac.products.Product[]> GetProductsAsync();
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "GetProductsById", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "GetProductsByIdResponse")]
-    unespacioparanet.com.services.datacontrac.products.Product GetProductsById(int id);
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "GetProductsById", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "GetProductsByIdResponse")]
+        unespacioparanet.com.services.datacontrac.products.Product GetProductsById(int id);
 
-    [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "GetProductsById", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
-        "GetProductsByIdResponse")]
-    System.Threading.Tasks.Task<unespacioparanet.com.services.datacontrac.products.Product> GetProductsByIdAsync(int id);
-}
+        [System.ServiceModel.OperationContractAttribute(Action = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "GetProductsById", ReplyAction = "https://unespacioparanet.com/services/contracts/products/IProductContractService/" +
+            "GetProductsByIdResponse")]
+        System.Threading.Tasks.Task<unespacioparanet.com.services.datacontrac.products.Product> GetProductsByIdAsync(int id);
+    }
 
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-public interface IProductContractServiceChannel : IProductContractService, System.ServiceModel.IClientChannel
-{
-}
-
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-public partial class ProductContractServiceClient : System.ServiceModel.ClientBase<IProductContractService>, IProductContractService
-{
-
-    public ProductContractServiceClient()
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IProductContractServiceChannel : IProductContractService, System.ServiceModel.IClientChannel
     {
     }
 
-    public ProductContractServiceClient(string endpointConfigurationName) :
-            base(endpointConfigurationName)
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ProductContractServiceClient : System.ServiceModel.ClientBase<IProductContractService>, IProductContractService
     {
-    }
 
-    public ProductContractServiceClient(string endpointConfigurationName, string remoteAddress) :
-            base(endpointConfigurationName, remoteAddress)
-    {
-    }
+        public ProductContractServiceClient()
+        {
+        }
 
-    public ProductContractServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-            base(endpointConfigurationName, remoteAddress)
-    {
-    }
+        public ProductContractServiceClient(string endpointConfigurationName) :
+                base(endpointConfigurationName)
+        {
+        }
 
-    public ProductContractServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-            base(binding, remoteAddress)
-    {
-    }
+        public ProductContractServiceClient(string endpointConfigurationName, string remoteAddress) :
+                base(endpointConfigurationName, remoteAddress)
+        {
+        }
 
-    public void AddProductAsync(unespacioparanet.com.services.datacontrac.products.Product product)
-    {
-        base.Channel.AddProductAsync(product);
-    }
+        public ProductContractServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
+                base(endpointConfigurationName, remoteAddress)
+        {
+        }
 
-    public System.Threading.Tasks.Task AddProductAsyncAsync(unespacioparanet.com.services.datacontrac.products.Product product)
-    {
-        return base.Channel.AddProductAsyncAsync(product);
-    }
+        public ProductContractServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
+                base(binding, remoteAddress)
+        {
+        }
 
-    public void RemoveProduct(int id)
-    {
-        base.Channel.RemoveProduct(id);
-    }
+        public void AddProductAsync(unespacioparanet.com.services.datacontrac.products.Product product)
+        {
+            base.Channel.AddProductAsync(product);
+        }
 
-    public System.Threading.Tasks.Task RemoveProductAsync(int id)
-    {
-        return base.Channel.RemoveProductAsync(id);
-    }
+        public System.Threading.Tasks.Task AddProductAsyncAsync(unespacioparanet.com.services.datacontrac.products.Product product)
+        {
+            return base.Channel.AddProductAsyncAsync(product);
+        }
 
-    public void updateProduct(unespacioparanet.com.services.datacontrac.products.Product product)
-    {
-        base.Channel.updateProduct(product);
-    }
+        public void RemoveProduct(int id)
+        {
+            base.Channel.RemoveProduct(id);
+        }
 
-    public System.Threading.Tasks.Task updateProductAsync(unespacioparanet.com.services.datacontrac.products.Product product)
-    {
-        return base.Channel.updateProductAsync(product);
-    }
+        public System.Threading.Tasks.Task RemoveProductAsync(int id)
+        {
+            return base.Channel.RemoveProductAsync(id);
+        }
 
-    public unespacioparanet.com.services.datacontrac.products.Product[] GetProducts()
-    {
-        return base.Channel.GetProducts();
-    }
+        public void updateProduct(unespacioparanet.com.services.datacontrac.products.Product product)
+        {
+            base.Channel.updateProduct(product);
+        }
 
-    public System.Threading.Tasks.Task<unespacioparanet.com.services.datacontrac.products.Product[]> GetProductsAsync()
-    {
-        return base.Channel.GetProductsAsync();
-    }
+        public System.Threading.Tasks.Task updateProductAsync(unespacioparanet.com.services.datacontrac.products.Product product)
+        {
+            return base.Channel.updateProductAsync(product);
+        }
 
-    public unespacioparanet.com.services.datacontrac.products.Product GetProductsById(int id)
-    {
-        return base.Channel.GetProductsById(id);
-    }
+        public unespacioparanet.com.services.datacontrac.products.Product[] GetProducts()
+        {
+            return base.Channel.GetProducts();
+        }
 
-    public System.Threading.Tasks.Task<unespacioparanet.com.services.datacontrac.products.Product> GetProductsByIdAsync(int id)
-    {
-        return base.Channel.GetProductsByIdAsync(id);
+        public System.Threading.Tasks.Task<unespacioparanet.com.services.datacontrac.products.Product[]> GetProductsAsync()
+        {
+            return base.Channel.GetProductsAsync();
+        }
+
+        public unespacioparanet.com.services.datacontrac.products.Product GetProductsById(int id)
+        {
+            return base.Channel.GetProductsById(id);
+        }
+
+        public System.Threading.Tasks.Task<unespacioparanet.com.services.datacontrac.products.Product> GetProductsByIdAsync(int id)
+        {
+            return base.Channel.GetProductsByIdAsync(id);
+        }
     }
 }

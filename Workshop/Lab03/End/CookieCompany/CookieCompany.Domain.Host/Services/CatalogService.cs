@@ -4,6 +4,7 @@
     using CookieCompany.Domain.Host.DataContracts;
     using CookieCompany.DomainCore.Contracts;
     using CookieCompany.DomainCore.Manage;
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
@@ -15,7 +16,7 @@
         private readonly ICatalog catalog;
         public CatalogService()
         {
-            catalog = new CatalogProvider(new Model.Context.CookieCompanyModel());
+            catalog = new CatalogProvider(new Model.Context.CookieCompanyDBEntities());
             catalog.CatalogEvent += Catalog_CatalogEvent;
         }
 
@@ -42,7 +43,19 @@
 
         }
         public IEnumerable<Product> GetProducts()
-            => catalog.GetProducts().Select(x => new Product { Id = x.Id, Name = x.Name, UrlImage = x.Image });
+        {
+            try
+            {
+                var products = catalog.GetProducts().Select(x => new Product { Id = x.Id, Name = x.Name, UrlImage = x.Image });
+                return products;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message, ex);
+
+            }
+        }
 
         public async Task<Product> GetProductsById(int id)
         {

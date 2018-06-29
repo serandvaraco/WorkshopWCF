@@ -139,8 +139,17 @@ namespace CookieCompany.DomainCore.Manage
         /// </summary>
         /// <returns>Listado de productos a obtener</returns>
         IEnumerable<Product> ICatalog.GetProducts()
-            => model.Product.AsParallel().AsEnumerable();
+        {
+            try
+            {
+                return model.Product.ToArray();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
 
+        }
         #endregion
 
         #region Invent
