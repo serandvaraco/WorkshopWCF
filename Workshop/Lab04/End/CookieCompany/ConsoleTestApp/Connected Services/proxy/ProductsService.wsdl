@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="https://unespacioparanet.com/services/contracts/products" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="https://unespacioparanet.com/services/contracts/products" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="https://unespacioparanet.com/services/contracts/products/Imports">
+      <xsd:import schemaLocation="http://localhost:53798/ProductsService.svc?xsd=xsd0" namespace="https://unespacioparanet.com/services/contracts/products" />
+      <xsd:import schemaLocation="http://localhost:53798/ProductsService.svc?xsd=xsd3" namespace="https://unespacioparanet.com/services/datacontrac/Fault" />
+      <xsd:import schemaLocation="http://localhost:53798/ProductsService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:53798/ProductsService.svc?xsd=xsd2" namespace="https://unespacioparanet.com/services/datacontrac/products" />
+      <xsd:import schemaLocation="http://localhost:53798/ProductsService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IProductContractService_AddProductAsync_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductAsync" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_AddProductAsync_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductAsyncResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_AddProductAsync_FaultCatalogFault_FaultMessage">
+    <wsdl:part xmlns:q1="https://unespacioparanet.com/services/datacontrac/Fault" name="detail" element="q1:FaultCatalog" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_RemoveProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProduct" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_RemoveProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_RemoveProduct_FaultCatalogFault_FaultMessage">
+    <wsdl:part xmlns:q2="https://unespacioparanet.com/services/datacontrac/Fault" name="detail" element="q2:FaultCatalog" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_updateProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateProduct" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_updateProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_updateProduct_FaultCatalogFault_FaultMessage">
+    <wsdl:part xmlns:q3="https://unespacioparanet.com/services/datacontrac/Fault" name="detail" element="q3:FaultCatalog" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_GetProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProducts" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_GetProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_GetProductsById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsById" />
+  </wsdl:message>
+  <wsdl:message name="IProductContractService_GetProductsById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IProductContractService">
+    <wsdl:operation name="AddProductAsync">
+      <wsdl:input wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/AddProductAsync" message="tns:IProductContractService_AddProductAsync_InputMessage" />
+      <wsdl:output wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/AddProductAsyncResponse" message="tns:IProductContractService_AddProductAsync_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://unespacioparanet.com/services/contracts/products/fault/add" name="FaultCatalogFault" message="tns:IProductContractService_AddProductAsync_FaultCatalogFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProduct">
+      <wsdl:input wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/RemoveProduct" message="tns:IProductContractService_RemoveProduct_InputMessage" />
+      <wsdl:output wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/RemoveProductResponse" message="tns:IProductContractService_RemoveProduct_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://unespacioparanet.com/services/contracts/products/fault/remove" name="FaultCatalogFault" message="tns:IProductContractService_RemoveProduct_FaultCatalogFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProduct">
+      <wsdl:input wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/updateProduct" message="tns:IProductContractService_updateProduct_InputMessage" />
+      <wsdl:output wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/updateProductResponse" message="tns:IProductContractService_updateProduct_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://unespacioparanet.com/services/contracts/products/fault/update" name="FaultCatalogFault" message="tns:IProductContractService_updateProduct_FaultCatalogFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <wsdl:input wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/GetProducts" message="tns:IProductContractService_GetProducts_InputMessage" />
+      <wsdl:output wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/GetProductsResponse" message="tns:IProductContractService_GetProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsById">
+      <wsdl:input wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/GetProductsById" message="tns:IProductContractService_GetProductsById_InputMessage" />
+      <wsdl:output wsaw:Action="https://unespacioparanet.com/services/contracts/products/IProductContractService/GetProductsByIdResponse" message="tns:IProductContractService_GetProductsById_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
