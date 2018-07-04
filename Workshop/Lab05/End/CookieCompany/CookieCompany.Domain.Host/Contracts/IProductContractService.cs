@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
 
     [ServiceContract(Namespace = "https://unespacioparanet.com/services/contracts/products")]
-    public interface IProductContractService 
+    public interface IProductContractService
     {
 
         [OperationContract]
@@ -25,7 +25,7 @@
         [TransactionFlow(TransactionFlowOption.Mandatory)]
         Task updateProductAsync(Product product);
 
-    
+
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "Products")]
         IEnumerable<Product> GetProducts();
@@ -33,6 +33,36 @@
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "Products/{id:int}")]
         Task<Product> GetProductsById(int id);
+
+
+        #region Invent's
+
+        /// <summary>
+        /// Adds the invent.
+        /// </summary>
+        /// <param name="invent">The invent.</param>
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Mandatory)]
+        void AddInvent(Invent invent);
+
+        /// <summary>
+        /// Updates the invent.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="invent">The invent.</param>
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Mandatory)]
+        void UpdateInvent(int id, Invent invent);
+
+        /// <summary>
+        /// Removes the invent.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Mandatory)]
+        void RemoveInvent(int id);
+        #endregion
+
 
     }
 }

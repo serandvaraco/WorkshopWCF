@@ -51,6 +51,7 @@
     <Compile Include="Contracts\ICatalog.cs" />
     <Compile Include="Exceptions\ProductNotFoundException.cs" />
     <Compile Include="Exceptions\CatalogException.cs" />
+    <Compile Include="Exceptions\UpdateInventException.cs" />
     <Compile Include="Manage\CatalogProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Triggers\CatalogEventArgs.cs" />

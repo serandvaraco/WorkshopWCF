@@ -17,6 +17,9 @@
      TransactionTimeout = "00:00:45")]
     public class CatalogService : IProductContractService
     {
+        /// <summary>
+        /// The catalog
+        /// </summary>
         private readonly ICatalog catalog;
         public CatalogService()
         {
@@ -72,5 +75,45 @@
 
         public Task updateProductAsync(Product product)
         => catalog.UpdateProductAsync(product.Id, new Model.Context.Product { Name = product.Name, Image = product.UrlImage });
+
+        /// <summary>
+        /// Adds the invent.
+        /// </summary>
+        /// <param name="invent">The invent.</param>
+        /// <exception cref="FaultException{FaultCatalog}">Error generado por el servicio al intentar guradar el invantario</exception>
+        /// <exception cref="FaultCatalog">Error desconocido del catálogo</exception>
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public async void AddInvent(Invent invent)
+        {
+            try
+            {
+                await catalog.AddInventAsync(new Model.Context.Invent
+                {
+                    Id = invent.Id,
+                    Date = invent.Date,
+                    Quantity = invent.Quantity,
+                    ProductId = invent.ProductId
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<FaultCatalog>(new FaultCatalog
+                {
+                    Exception = ex,
+                    Message = "Error al agregar al inventario"
+                });
+            }
+
+        }
+
+        public void UpdateInvent(int id, Invent invent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveInvent(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

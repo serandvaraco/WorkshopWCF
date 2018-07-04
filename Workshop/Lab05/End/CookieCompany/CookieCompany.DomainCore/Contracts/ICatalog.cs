@@ -13,6 +13,8 @@
         /// Notifica los sucesos ocurridos en las transacciones
         /// </summary>
         event EventHandler<CatalogEventArgs> CatalogEvent;
+
+
         /// <summary>
         /// Permite Agregar un nuevo producto 
         /// </summary>
@@ -44,30 +46,35 @@
         IEnumerable<Product> GetProducts();
 
         /// <summary>
-        /// Permite crear un nuevo inventario
+        /// Permite agrear un nuevo producto al inventario
         /// </summary>
-        /// <param name="invent"></param>
+        /// <param name="invent">Entidad de inventario</param>
+        /// <exception cref="ArgumentOutOfRangeException"> El producto o la cantidad es 0 o inferior </exception>
+        /// <exception cref="ArgumentNullException">Si la entidad inventario es nula</exception>
+        /// <exception cref="ProductNotFoundException">Si el producto que llega en el inventario no existe</exception>
+        /// <exception cref="UpdateInventException">Se produce cuanto intenta almacenar el inventario</exception>
+        /// <returns>Tarea en segundo plano</returns>
         Task AddInventAsync(Invent invent);
         /// <summary>
         /// Permite obtener el inventario por producto
         /// </summary>
         /// <param name="productId">identificador de producto</param>
         /// <returns></returns>
-        Task<IEnumerable<Invent>> GetInventsByProduct(int productId);
+        IEnumerable<Invent> GetInventsByProduct(int productId);
         /// <summary>
         /// Permite obtener el inventario por un rango de fechas
         /// </summary>
         /// <param name="begin">Fecha inicial </param>
         /// <param name="end">Fecha Final </param>
         /// <returns></returns>
-        Task<IEnumerable<Invent>> GetInventsByDateRange(DateTime begin, DateTime end);
+        IEnumerable<Invent> GetInventsByDateRange(DateTime begin, DateTime end);
         /// <summary>
         /// Permite obtener el inventario por cantidad 
         /// </summary>
         /// <param name="quantity">Cantidad a obtener</param>
         /// <param name="operators">Operador aritmetico para obtener la cantidad de inventario</param>
         /// <returns></returns>
-        Task<IEnumerable<Invent>> GetInventsByQuantity(int quantity, OperatorsMode operators);
+        IEnumerable<Invent> GetInventsByQuantity(int quantity, OperatorsMode operators);
 
         /// <summary>
         /// Actualizar Inventario

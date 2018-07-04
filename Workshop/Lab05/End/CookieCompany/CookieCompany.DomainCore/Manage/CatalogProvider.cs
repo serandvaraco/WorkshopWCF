@@ -11,6 +11,10 @@ namespace CookieCompany.DomainCore.Manage
     using System.Linq;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Catálogo de productos
+    /// </summary>
+    /// <seealso cref="CookieCompany.DomainCore.Contracts.ICatalog" />
     public class CatalogProvider : ICatalog
     {
         private readonly ICookieCompanyModel model;
@@ -153,36 +157,151 @@ namespace CookieCompany.DomainCore.Manage
         #endregion
 
         #region Invent
+        /// <summary>
+        /// Permite agrear un nuevo producto al inventario
+        /// </summary>
+        /// <param name="invent">Entidad de inventario</param>
+        /// <exception cref="ArgumentOutOfRangeException"> El producto o la cantidad es 0 o inferior </exception>
+        /// <exception cref="ArgumentNullException">Si la entidad inventario es nula</exception>
+        /// <exception cref="ProductNotFoundException">Si el producto que llega en el inventario no existe</exception>
+        /// <exception cref="UpdateInventException">Se produce cuanto intenta almacenar el inventario</exception>
+        /// <returns>Tarea en segundo plano</returns>
         Task ICatalog.AddInventAsync(Invent invent)
         {
-            throw new NotImplementedException();
-        }
 
-        Task<IEnumerable<Invent>> ICatalog.GetInventsByProduct(int productId)
+
+            try
+            {
+                InventIsValid(invent);
+                model.Invent.Add(invent);
+                return model.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new UpdateInventException(ex);
+            }
+        }
+        /// <summary>
+        /// Invents the is valid.
+        /// </summary>
+        /// <param name="invent">The invent.</param>
+        /// <exception cref="ArgumentNullException">invent</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// ProductId
+        /// or
+        /// Quantity
+        /// </exception>
+        /// <exception cref="ProductNotFoundException"></exception>
+        private void InventIsValid(Invent invent)
         {
-            throw new NotImplementedException();
+            if (invent == null)
+                throw new ArgumentNullException("invent");
+
+            if (invent.ProductId <= 0)
+                throw new ArgumentOutOfRangeException("ProductId");
+
+            if (invent.Quantity <= 0)
+                throw new ArgumentOutOfRangeException("Quantity");
+
+            if (!this.model.Product.Any(x => x.Id == invent.ProductId))
+                throw new ProductNotFoundException();
         }
 
-        Task<IEnumerable<Invent>> ICatalog.GetInventsByDateRange(DateTime begin, DateTime end)
+        /// <summary>
+        /// Permite obtener el inventario por identificador de producto 
+        /// </summary>
+        /// <param name="productId">Identificador de producto</param>
+        /// <returns></returns>
+        IEnumerable<Invent> ICatalog.GetInventsByProduct(int productId)
+            => model.Invent.Where(x => x.ProductId == productId);
+
+        IEnumerable<Invent> ICatalog.GetInventsByDateRange(DateTime begin, DateTime end)
+        => model.Invent.Where(x => x.Date >= begin && x.Date <= end);
+
+        /// <summary>
+        /// Obtiene las unidades de invatario por cantidad 
+        /// </summary>
+        /// <param name="quantity">Cantidad a obtener</param>
+        /// <param name="operators">Modo</param>
+        /// <returns>Listado de elementos de inventario</returns>
+        IEnumerable<Invent> ICatalog.GetInventsByQuantity(int quantity,
+            OperatorsMode operators)
         {
-            throw new NotImplementedException();
+            switch (operators)
+            {
+                case OperatorsMode.Greater:
+                    return model.Invent.Where(x => x.Quantity > quantity);
+                case OperatorsMode.Less:
+                    return model.Invent.Where(x => x.Quantity < quantity);
+                case OperatorsMode.Equal:
+                    return model.Invent.Where(x => x.Quantity == quantity);
+                case OperatorsMode.GreaterOrEqual:
+                    return model.Invent.Where(x => x.Quantity >= quantity);
+                case OperatorsMode.LessOrEqual:
+                    return model.Invent.Where(x => x.Quantity <= quantity);
+                case OperatorsMode.Different:
+                    return model.Invent.Where(x => x.Quantity != quantity);
+                default:
+                    return model.Invent.Where(x => x.Quantity == quantity);
+            }
         }
 
-        Task<IEnumerable<Invent>> ICatalog.GetInventsByQuantity(int quantity, OperatorsMode operators)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Actualizar Inventario
+        /// </summary>
+        /// <param name="id">Identificador del inventario</param>
+        /// <param name="invent">Inventario</param>
+        /// <returns></returns>
+        /// <exception cref="UpdateInventException"> Se genera al intentar actualizar el inventario
+        /// </exception>
         Task ICatalog.UpdateInventAsync(int id, Invent invent)
         {
-            throw new NotImplementedException();
+            try
+            {
+                InventIsValid(invent);
+
+                if (!model.Invent.Any(x => x.Id == id))
+                    throw new UpdateInventException();
+
+                var _invent = model.Invent.FindAsync(id).Result;
+
+                //Se puede usar el objeto AutoMapper para esta tarea. iMapper.Map<Contex.Invent, Model.Invent>(invent);
+                _invent.Date = invent.Date;
+                _invent.Quantity = invent.Quantity;
+                return model.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new UpdateInventException(ex);
+            }
+
         }
 
+        /// <summary>
+        /// Permite remover el inventario
+        /// </summary>
+        /// <param name="id">identificador del inventario</param>
+        /// <returns></returns>
+        /// <exception cref="CookieCompany.DomainCore.Exceptions.UpdateInventException">
+        /// Error al generar la actualización del inventario
+        /// </exception>
         Task ICatalog.RemoveInventAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (!model.Invent.Any(x => x.Id == id))
+                    throw new UpdateInventException();
+
+                model.Invent.Remove(model.Invent.Find(id));
+                return model.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new UpdateInventException(ex);
+            }
         }
 
-        #endregion 
+
+        #endregion
     }
 }
