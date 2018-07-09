@@ -34,9 +34,9 @@ namespace WCFSecurity.Tests
         }
 
         [TestMethod()]
-        public void DecriptTest()
+        public void DecryptTest()
         {
-            var decrypted = common.Decript("812UfOqM55MW4pvzHD+UHMkVzNtqHERQqFNDt2MdCug=", "SdwAqXg2YLzhvZeo/RbhgA==");
+            var decrypted = common.Decrypt("812UfOqM55MW4pvzHD+UHMkVzNtqHERQqFNDt2MdCug=", "SdwAqXg2YLzhvZeo/RbhgA==");
             Debug.WriteLine(decrypted);
             Assert.IsTrue(!string.IsNullOrWhiteSpace(decrypted));
         }

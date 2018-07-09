@@ -48,7 +48,7 @@ namespace WCFSecurity
         }
              
     
-        public string Decript( string message, string key)
+        public string Decrypt( string message, string key)
         {
             SymmetricAlgorithm symmetricAlgorithm = new RijndaelManaged();
             symmetricAlgorithm.KeySize = 128;
