@@ -20,13 +20,29 @@ namespace WCFSecurity
 
         DbSecurityEntities db = new DbSecurityEntities();
 
+        /// <summary>
+        /// Adds the role.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="role">The role.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public ResponseModel AddRole(string username, string role)
         {
+            //TODO: super adminsitrador
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="actualPassword">The actual password.</param>
+        /// <param name="newPassword">The new password.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public ResponseModel changePassword(string username, string actualPassword, string newPassword)
         {
+            //TODO: invitado, operador, consulta
             throw new NotImplementedException();
         }
 
@@ -41,20 +57,34 @@ namespace WCFSecurity
         {
             try
             {
-                //TODO: Validar que no exista el usuario, 
-                //si el usuario existe debemos arrojar una excepcion 
+                if (string.IsNullOrWhiteSpace(username))
+                    throw new ArgumentNullException("username");
+
+                if (string.IsNullOrWhiteSpace(password))
+                    throw new ArgumentNullException("password");
+
+                TokenSecurityModel token = ValidateToken();
+                if (!token.Roles.Any(x => x == "admin"))
+                    throw new Exception("No tiene permisos");
+
+
+                //Validar que no exista el usuario, 
+
+                if (db.User.Any(x => x.Username == username))
+                    return new ResponseModel { Message = "Usuario Existente" };
 
                 //El parámetro password llega encryptado con el algoritmo Rindjael
-                //TODO:  Agregar el tratamiento del parámetro password para poder ser generado en SHA256
+                var common = new Common();
+                var passwordResult = common.Decrypt(password, key);
+                var passwordSHA256 = common.GenerateSHA256(passwordResult);
 
-                var passwordhash = new Common().GenerateSHA256(password);
                 db.User.Add(new User
                 {
                     DateCreate = DateTime.Now,
                     DateUpdate = DateTime.Now,
                     FailedAttempts = 0,
                     Username = username,
-                    Password = passwordhash,
+                    Password = passwordSHA256,
                     UserId = Guid.NewGuid()
                 });
 
@@ -70,7 +100,8 @@ namespace WCFSecurity
 
         public TokenSecurityModel ValidateToken()
         {
-            var requestToken = "dE1aSVZWdngyY3hOUnBlVjJYTjhEQkdkUGJ1UEdvZFp4U0NwMkxSOFZMc2tJeGZJOCtlT3F3M2srRFpwSXgxZ1lKb1JFV0xTQ0I2ekc4UC9TRGJGTm91eFljS05vMUxtV21nWnpNWmxEN2tZdjFxNHdiUGtxS2Z5bDRvMXpNcWhMUENaQktzZXVUVDZoU0lYMTdXUktYV2N1VlFWYW95Z08rZlpyWkovdWxtWS90S0g0T20wK2tpb1oxZU85Rlo1aVJRN1R2bmRIYlVJK2VsR0VPODhKaWtjcWtROVU3MGcvK1BsSFZGUytTND0="; //HttpContext.Current.Request["__TOKEN_SECURITY__"];
+            //HttpContext.Current.Request["__TOKEN_SECURITY__"];
+            var requestToken = "SjZiTGtRdEk1VUNKbG9yVmpBOW44VHR2OWVleFFrNXhFUWVTNzhVRk5mYjlvRDB6ZHhuc2xFM3NIbm1VckVjbFlKb1JFV0xTQ0I2ekc4UC9TRGJGTmxZNE1ucUlrUmVzMi9PVmgzbFpIak5sMjYrYkdIU2xuakdVVGJCazFxa1VMUENaQktzZXVUVDZoU0lYMTdXUktYV2N1VlFWYW95Z08rZlpyWkovdWxtWS90S0g0T20wK2tpb1oxZU85Rlo1aVJRN1R2bmRIYlVJK2VsR0VPODhKaWtjcWtROVU3MGcvK1BsSFZGUytTND0=";
 
             if (string.IsNullOrEmpty(requestToken))
                 throw new Exception("Token Invalido");
@@ -112,7 +143,7 @@ namespace WCFSecurity
             var token = new TokenSecurityModel
             {
                 DisplayName = string.Concat("Mr ", user.Username),
-                Expiration = DateTime.Now.AddMinutes(1),
+                Expiration = DateTime.Now.AddHours(1),
                 Username = user.Username,
                 Roles = roles,
                 id = Guid.NewGuid()

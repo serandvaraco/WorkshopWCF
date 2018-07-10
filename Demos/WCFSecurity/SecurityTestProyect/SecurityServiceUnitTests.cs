@@ -50,12 +50,14 @@ namespace WCFSecurity.Tests
             var passwordHash =
                new Common().Encrypt("ABC123..", "BeX30vkH8iy5ZMEzGG0qmw==");
 
-            ResponseModel response = security.CreateUser("evargas", passwordHash);
+            ResponseModel response = security.CreateUser("testUser", passwordHash);
 
             if (response.IsError)
                 Assert.Fail(response.Message);
 
             Assert.IsTrue(true, response.Message);
+
+            System.Diagnostics.Debug.WriteLine(response.Message);
 
         }
     }
