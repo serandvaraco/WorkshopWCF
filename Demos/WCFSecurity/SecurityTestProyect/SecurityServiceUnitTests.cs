@@ -33,7 +33,7 @@ namespace WCFSecurity.Tests
         {
             try
             {
-                TokenSecurityModel token = 
+                TokenSecurityModel token =
                     security.ValidateToken();
                 Assert.IsNotNull(token);
             }
@@ -42,6 +42,21 @@ namespace WCFSecurity.Tests
                 Debug.WriteLine(ex.Message);
                 Assert.Fail(ex.Message);
             }
+        }
+
+        [TestMethod()]
+        public void CreateUserTest()
+        {
+            var passwordHash =
+               new Common().Encrypt("ABC123..", "BeX30vkH8iy5ZMEzGG0qmw==");
+
+            ResponseModel response = security.CreateUser("evargas", passwordHash);
+
+            if (response.IsError)
+                Assert.Fail(response.Message);
+
+            Assert.IsTrue(true, response.Message);
+
         }
     }
 }

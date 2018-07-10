@@ -11,6 +11,7 @@ using System.Text;
 using System.Web;
 
 using System.Security.Claims;
+using System.Security.Permissions;
 
 namespace WCFSecurity
 {
@@ -29,9 +30,42 @@ namespace WCFSecurity
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Creates the user.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
         public ResponseModel CreateUser(string username, string password)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //TODO: Validar que no exista el usuario, 
+                //si el usuario existe debemos arrojar una excepcion 
+
+                //El parámetro password llega encryptado con el algoritmo Rindjael
+                //TODO:  Agregar el tratamiento del parámetro password para poder ser generado en SHA256
+
+                var passwordhash = new Common().GenerateSHA256(password);
+                db.User.Add(new User
+                {
+                    DateCreate = DateTime.Now,
+                    DateUpdate = DateTime.Now,
+                    FailedAttempts = 0,
+                    Username = username,
+                    Password = passwordhash,
+                    UserId = Guid.NewGuid()
+                });
+
+                db.SaveChanges();
+
+                return new ResponseModel { Message = "Usuario agregado con exito" };
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel { Message = ex.Message, Exception = ex };
+            }
         }
 
         public TokenSecurityModel ValidateToken()
