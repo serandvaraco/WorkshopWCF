@@ -60,5 +60,34 @@ namespace WCFSecurity.Tests
             System.Diagnostics.Debug.WriteLine(response.Message);
 
         }
+
+        [TestMethod()]
+        public void changePasswordTest()
+        {
+            var passwordHash = new Common().Encrypt("ABC123..", "BeX30vkH8iy5ZMEzGG0qmw==");
+            var newPasswordHash = new Common().Encrypt("abc123..", "BeX30vkH8iy5ZMEzGG0qmw==");
+
+            ResponseModel response = security.changePassword("testUser", passwordHash, newPasswordHash);
+
+            if (response.IsError)
+                Assert.Fail(response.Message);
+
+            Assert.IsTrue(true, response.Message);
+
+            System.Diagnostics.Debug.WriteLine(response.Message);
+        }
+
+        [TestMethod()]
+        public void AddRoleTest()
+        {
+            ResponseModel response = security.AddRole("testUser", "invitado");
+
+            if (response.IsError)
+                Assert.Fail(response.Message);
+
+            Assert.IsTrue(true, response.Message);
+
+            System.Diagnostics.Debug.WriteLine(response.Message);
+        }
     }
 }

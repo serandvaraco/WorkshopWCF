@@ -15,6 +15,7 @@ using System.Security.Permissions;
 
 namespace WCFSecurity
 {
+
     public class SecurityService : Security
     {
 
@@ -29,8 +30,43 @@ namespace WCFSecurity
         /// <exception cref="NotImplementedException"></exception>
         public ResponseModel AddRole(string username, string role)
         {
-            //TODO: super adminsitrador
-            throw new NotImplementedException();
+            try
+            {
+                var validateToken = ValidateToken();
+
+                if (!validateToken.Roles.Any(x => x == "sadmin"))
+                    throw new Exception("Usuario sin acceso");
+
+                var roleEntity = db.Role.FirstOrDefault(x => x.Name == role);
+                if (roleEntity == null)
+                    throw new Exception("el Rol no existe");
+
+                var userEntity = db.User.FirstOrDefault(x => x.Username == username);
+                if (userEntity == null)
+                    throw new Exception("el usuario no existe");
+
+
+                if (db.UsersInRoles.Any(x => x.User.Username == username && x.Role.Name == role))
+                    return new ResponseModel { Message = "Este usuario ya contiene el ROL" };
+
+                db.UsersInRoles.Add(new UsersInRoles
+                {
+                    UsersInRolesId = Guid.NewGuid(),
+                    RoleId = roleEntity.RoleId,
+                    UserId = userEntity.UserId
+                });
+
+                db.SaveChanges();
+
+                return new ResponseModel { Message = "El usuario se asigno Correctamente" };
+
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel { Message = ex.Message, Exception = ex };
+            }
+
+
         }
         /// <summary>
         /// Changes the password.
@@ -42,8 +78,36 @@ namespace WCFSecurity
         /// <exception cref="NotImplementedException"></exception>
         public ResponseModel changePassword(string username, string actualPassword, string newPassword)
         {
-            //TODO: invitado, operador, consulta
-            throw new NotImplementedException();
+            try
+            {
+                ValidateToken();
+
+                var common = new Common();
+                var passwordActualResult = common.Decrypt(actualPassword, key);
+                var passwordActualSHA256 = common.GenerateSHA256(passwordActualResult);
+
+                var passwordNewResult = common.Decrypt(newPassword, key);
+                var passwordNewSHA256 = common.GenerateSHA256(passwordNewResult);
+
+
+                User user = db.User
+                    .FirstOrDefault(x => x.Username == username
+                    && x.Password == passwordActualSHA256);
+
+                if (user != null)
+                {
+                    user.Password = passwordNewSHA256;
+                    user.DateUpdate = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+                return new ResponseModel { Message = "La cuenta ha sido actualizada" };
+
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel { Message = ex.Message, Exception = ex };
+            }
         }
 
 
@@ -101,7 +165,7 @@ namespace WCFSecurity
         public TokenSecurityModel ValidateToken()
         {
             //HttpContext.Current.Request["__TOKEN_SECURITY__"];
-            var requestToken = "SjZiTGtRdEk1VUNKbG9yVmpBOW44VHR2OWVleFFrNXhFUWVTNzhVRk5mYjlvRDB6ZHhuc2xFM3NIbm1VckVjbFlKb1JFV0xTQ0I2ekc4UC9TRGJGTmxZNE1ucUlrUmVzMi9PVmgzbFpIak5sMjYrYkdIU2xuakdVVGJCazFxa1VMUENaQktzZXVUVDZoU0lYMTdXUktYV2N1VlFWYW95Z08rZlpyWkovdWxtWS90S0g0T20wK2tpb1oxZU85Rlo1aVJRN1R2bmRIYlVJK2VsR0VPODhKaWtjcWtROVU3MGcvK1BsSFZGUytTND0=";
+            var requestToken = "cWVsbzQ1eXVLT1JMMUg3blFRaGtrTnJWaHNqUDd6ZXpNV2NzcC9zNkZOSjYrL2dHZk5Vd1ZWODVkdTBiOGhNZllKb1JFV0xTQ0I2ekc4UC9TRGJGTmpiVHhudlB3enNwTFhWTkl0NnIwNzl5dHhINFl0QXBJblc0aW9sQTErVGlMUENaQktzZXVUVDZoU0lYMTdXUkthYXZqdVlzUGkwSFZ0Tk1wekxwZ25oa0J6ODFGL3JnRS8vUmdoVUI0TTQvcndFQnVRYUVYWVdpemJYNHk4RVNPU0pxVzR3dVo5OFh6dlJXV0h4L2xvL0NEdEdOamdaeGlIcHB0dmpGelIrTw==";
 
             if (string.IsNullOrEmpty(requestToken))
                 throw new Exception("Token Invalido");
