@@ -19,14 +19,28 @@ namespace WCFSecurityClient
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Application.Exit(); 
+            Application.Exit();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var frm = new Form1();
-            frm.Show(); 
+            try
+            {
+                BaseSecurityContract baseSecurity = new BaseSecurityContract();
+                string token =
+                    await baseSecurity.GetTokenUserAsync(txtUsername.Text, txtPassword.Text);
+
+                if (token.LongCount() < 30)
+                    throw new Exception(token);
+
+                this.Hide();
+                var frm = new Form1();
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
