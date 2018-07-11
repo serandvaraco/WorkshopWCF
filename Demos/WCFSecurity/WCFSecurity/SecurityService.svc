@@ -1,1 +1,3 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="WCFSecurity.SecurityService" CodeBehind="SecurityService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" 
+    Service="WCFSecurity.SecurityService" 
+    CodeBehind="SecurityService.svc.cs" %>

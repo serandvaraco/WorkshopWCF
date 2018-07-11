@@ -16,7 +16,7 @@ using System.Security.Permissions;
 namespace WCFSecurity
 {
 
-    public class SecurityService : Security
+    public class SecurityService : ISecurity
     {
 
         DbSecurityEntities db = new DbSecurityEntities();
@@ -162,10 +162,13 @@ namespace WCFSecurity
             }
         }
 
+        /// <summary>
+        /// Permite realizar la validación del token 
+        /// </summary>
+        /// <returns></returns>
         public TokenSecurityModel ValidateToken()
         {
-            //HttpContext.Current.Request["__TOKEN_SECURITY__"];
-            var requestToken = "cWVsbzQ1eXVLT1JMMUg3blFRaGtrTnJWaHNqUDd6ZXpNV2NzcC9zNkZOSjYrL2dHZk5Vd1ZWODVkdTBiOGhNZllKb1JFV0xTQ0I2ekc4UC9TRGJGTmpiVHhudlB3enNwTFhWTkl0NnIwNzl5dHhINFl0QXBJblc0aW9sQTErVGlMUENaQktzZXVUVDZoU0lYMTdXUkthYXZqdVlzUGkwSFZ0Tk1wekxwZ25oa0J6ODFGL3JnRS8vUmdoVUI0TTQvcndFQnVRYUVYWVdpemJYNHk4RVNPU0pxVzR3dVo5OFh6dlJXV0h4L2xvL0NEdEdOamdaeGlIcHB0dmpGelIrTw==";
+            var requestToken = HttpContext.Current.Request["__TOKEN_SECURITY__"];
 
             if (string.IsNullOrEmpty(requestToken))
                 throw new Exception("Token Invalido");

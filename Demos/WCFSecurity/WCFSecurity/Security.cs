@@ -6,23 +6,26 @@ using System.ServiceModel.Web;
 namespace WCFSecurity
 {
     [ServiceContract]
-    public interface Security
+    public interface ISecurity
     {
         [OperationContract]
-        [WebInvoke(Method ="POST",UriTemplate = "GetToken", // Post envia 
-            ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "POST", UriTemplate = "GetToken",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
 
         string GetToken(string username, string password);
 
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "Create",
-            ResponseFormat = WebMessageFormat.Json)]
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
 
         ResponseModel CreateUser(string username, string password);
 
         [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "changePassword", // Actualiza
-            ResponseFormat = WebMessageFormat.Json)]
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
 
         ResponseModel changePassword(string username,
             string actualPassword,
@@ -30,10 +33,9 @@ namespace WCFSecurity
 
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "CreateRole",
-            ResponseFormat = WebMessageFormat.Json)]
-
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
         ResponseModel AddRole(string username, string role);
- 
     }
 
     [DataContract]
@@ -57,7 +59,7 @@ namespace WCFSecurity
 
         public DateTime Expiration { get; set; }
 
-        public string [] Roles { get; set; }
+        public string[] Roles { get; set; }
 
         public string Username { get; set; }
 
