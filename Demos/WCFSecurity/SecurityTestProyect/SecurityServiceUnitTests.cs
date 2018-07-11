@@ -15,6 +15,19 @@ namespace WCFSecurity.Tests
 
         SecurityService security = new SecurityService();
 
+        [TestMethod]
+        public void GeneratePasswordHash() {
+
+
+            var passwordHash =
+                new Common().Encrypt("ABC123..", "BeX30vkH8iy5ZMEzGG0qmw==");
+
+            System.Diagnostics.Debug.WriteLine(passwordHash);
+
+            Assert.IsTrue(!string.IsNullOrEmpty(passwordHash));
+        }
+
+
         [TestMethod()]
         public void GetTokenTest()
         {

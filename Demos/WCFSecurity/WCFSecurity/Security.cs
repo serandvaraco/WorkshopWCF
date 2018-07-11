@@ -39,11 +39,14 @@ namespace WCFSecurity
     }
 
     [DataContract]
-
     public class ResponseModel
     {
+        public ResponseModel()
+        {
+            IsError = false;
+        }
         [DataMember]
-        public bool IsError => Exception != null;
+        public bool IsError { get; set; }
 
         [DataMember]
         public System.Exception Exception { get; set; }

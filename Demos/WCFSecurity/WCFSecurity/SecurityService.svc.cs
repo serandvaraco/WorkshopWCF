@@ -158,7 +158,7 @@ namespace WCFSecurity
             }
             catch (Exception ex)
             {
-                return new ResponseModel { Message = ex.Message, Exception = ex };
+                return new ResponseModel { Message = ex.Message, Exception = ex, IsError = true };
             }
         }
 
@@ -168,7 +168,7 @@ namespace WCFSecurity
         /// <returns></returns>
         public TokenSecurityModel ValidateToken()
         {
-            var requestToken = HttpContext.Current.Request["__TOKEN_SECURITY__"];
+            var requestToken = HttpContext.Current.Request.Headers["__TOKEN_SECURITY__"];
 
             if (string.IsNullOrEmpty(requestToken))
                 throw new Exception("Token Invalido");
