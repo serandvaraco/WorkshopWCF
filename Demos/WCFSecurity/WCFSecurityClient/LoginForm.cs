@@ -21,5 +21,12 @@ namespace WCFSecurityClient
         {
             Application.Exit(); 
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var frm = new Form1();
+            frm.Show(); 
+        }
     }
 }
