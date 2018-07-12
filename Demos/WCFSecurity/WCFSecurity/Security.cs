@@ -36,6 +36,13 @@ namespace WCFSecurity
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
         ResponseModel AddRole(string username, string role);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "GetUser",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        ResponseModel GetUser(); 
+
     }
 
     [DataContract]

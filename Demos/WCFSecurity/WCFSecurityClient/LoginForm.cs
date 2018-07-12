@@ -34,7 +34,7 @@ namespace WCFSecurityClient
                     throw new Exception(token);
 
                 this.Hide();
-                var frm = new Form1();
+                var frm = new Form1(token);
                 frm.Show();
             }
             catch (Exception ex)

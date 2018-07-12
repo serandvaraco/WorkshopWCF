@@ -232,5 +232,29 @@ namespace WCFSecurity
             //Se retorna la codificación a Base64 para su transporte por HTTP
             return Convert.ToBase64String(tokenBytes);
         }
+
+        public ResponseModel GetUser()
+        {
+            try
+            {
+                var token = ValidateToken();
+                var user = db.User.FirstOrDefault(x => x.Username == token.Username);
+                if (user == null)
+                    throw new Exception("Usuario no encontrado o token invalido");
+
+                var jsonUser = JsonConvert.SerializeObject(new
+                {
+                    user.Username,
+                    DisplayName = $"Mr. {user.Username}"
+                });
+
+                return new ResponseModel { Message = jsonUser };
+
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel { Message = ex.Message, Exception = ex, IsError = true };
+            }
+        }
     }
 }

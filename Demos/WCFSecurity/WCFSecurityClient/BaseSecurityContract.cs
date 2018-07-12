@@ -64,10 +64,10 @@ namespace WCFSecurityClient
                 var key = ConfigurationManager.AppSettings["KEY"];
                 var passwordHash = common.Encrypt(password, key);
                 var tokenJSON = await GetTokenAsync(username, passwordHash);
-                var tokenHash = JsonConvert.DeserializeAnonymousType(tokenJSON, 
+                var tokenHash = JsonConvert.DeserializeAnonymousType(tokenJSON,
                     new { GetTokenResult = "" });
 
-                return tokenHash.GetTokenResult; 
+                return tokenHash.GetTokenResult;
             }
             catch (Exception ex)
             {
@@ -75,5 +75,45 @@ namespace WCFSecurityClient
             }
         }
 
+
+        private async Task<string> GetUserHttp(string token)
+        {
+
+            try
+            {
+                http.DefaultRequestHeaders.Add("__TOKEN_SECURITY__", token);
+                var result = await http.PostAsync("GetUser", null);
+                if (!result.IsSuccessStatusCode)
+                    return null;
+                return await result.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+        public async Task<UserModel> GetUser(string token)
+        {
+
+            try
+            {
+                var responseModelJson = await GetUserHttp(token);
+                var responseModel = JsonConvert.DeserializeObject<GetUserResultClass>(responseModelJson);
+
+                if (responseModel.GetUserResult.IsError)
+                {
+                    throw new Exception(responseModel.GetUserResult.Message, responseModel.GetUserResult.Exception);
+                }
+
+                var userModel = JsonConvert.DeserializeObject<UserModel>(responseModel.GetUserResult.Message);
+
+                return userModel;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
     }
 }
