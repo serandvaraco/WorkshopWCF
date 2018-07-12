@@ -1,9 +1,12 @@
 ﻿namespace WCFSecurityClient
 {
 
-    internal class GetUserResultClass
+    internal class ResultModel
     {
         public ResponseModel GetUserResult { get; set; }
+        public ResponseModel CreateUserResult { get; set; }
+        public ResponseModel AddRoleResult { get; set; }
+        public ResponseModel ChangePasswordResult { get; set; }
     }
 
     internal class ResponseModel
