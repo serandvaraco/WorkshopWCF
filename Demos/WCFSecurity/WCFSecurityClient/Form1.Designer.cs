@@ -29,15 +29,22 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtUsernameCreate = new System.Windows.Forms.TextBox();
-            this.txtPasswordCreate = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnSendCreate = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtConfirmPasswordCreate = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnSendCreate = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPasswordCreate = new System.Windows.Forms.TextBox();
+            this.txtUsernameCreate = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSendRole = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtRoleNameCreateRole = new System.Windows.Forms.TextBox();
+            this.txtUsernameCreateRole = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtPasswordConfirmChangePassword = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtPasswordNewChangePassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSendUpdatePassword = new System.Windows.Forms.Button();
@@ -45,13 +52,6 @@
             this.txtPasswordChangePassword = new System.Windows.Forms.TextBox();
             this.txtUsernameChangePassword = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtPasswordConfirmChangePassword = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtRoleNameCreateRole = new System.Windows.Forms.TextBox();
-            this.txtUsernameCreateRole = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btnSendRole = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,6 +74,66 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Crear usuario";
             // 
+            // txtConfirmPasswordCreate
+            // 
+            this.txtConfirmPasswordCreate.Location = new System.Drawing.Point(387, 54);
+            this.txtConfirmPasswordCreate.Name = "txtConfirmPasswordCreate";
+            this.txtConfirmPasswordCreate.PasswordChar = '*';
+            this.txtConfirmPasswordCreate.Size = new System.Drawing.Size(164, 29);
+            this.txtConfirmPasswordCreate.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(383, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 21);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Confirmar";
+            // 
+            // btnSendCreate
+            // 
+            this.btnSendCreate.Location = new System.Drawing.Point(449, 89);
+            this.btnSendCreate.Name = "btnSendCreate";
+            this.btnSendCreate.Size = new System.Drawing.Size(102, 35);
+            this.btnSendCreate.TabIndex = 4;
+            this.btnSendCreate.Text = "Enviar";
+            this.btnSendCreate.UseVisualStyleBackColor = true;
+            this.btnSendCreate.Click += new System.EventHandler(this.btnSendCreate_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(199, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 21);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Contraseña";
+            // 
+            // txtPasswordCreate
+            // 
+            this.txtPasswordCreate.Location = new System.Drawing.Point(200, 54);
+            this.txtPasswordCreate.Name = "txtPasswordCreate";
+            this.txtPasswordCreate.PasswordChar = '*';
+            this.txtPasswordCreate.Size = new System.Drawing.Size(164, 29);
+            this.txtPasswordCreate.TabIndex = 2;
+            // 
+            // txtUsernameCreate
+            // 
+            this.txtUsernameCreate.Location = new System.Drawing.Point(9, 54);
+            this.txtUsernameCreate.Name = "txtUsernameCreate";
+            this.txtUsernameCreate.Size = new System.Drawing.Size(165, 29);
+            this.txtUsernameCreate.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nombre de usuario";
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnSendRole);
@@ -89,64 +149,47 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Asignar Roles";
             // 
-            // label1
+            // btnSendRole
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre de usuario";
+            this.btnSendRole.Location = new System.Drawing.Point(449, 71);
+            this.btnSendRole.Name = "btnSendRole";
+            this.btnSendRole.Size = new System.Drawing.Size(102, 35);
+            this.btnSendRole.TabIndex = 9;
+            this.btnSendRole.Text = "Enviar";
+            this.btnSendRole.UseVisualStyleBackColor = true;
             // 
-            // txtUsernameCreate
+            // label8
             // 
-            this.txtUsernameCreate.Location = new System.Drawing.Point(9, 54);
-            this.txtUsernameCreate.Name = "txtUsernameCreate";
-            this.txtUsernameCreate.Size = new System.Drawing.Size(165, 29);
-            this.txtUsernameCreate.TabIndex = 1;
+            this.label8.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(199, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(33, 21);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Rol";
             // 
-            // txtPasswordCreate
+            // txtRoleNameCreateRole
             // 
-            this.txtPasswordCreate.Location = new System.Drawing.Point(200, 54);
-            this.txtPasswordCreate.Name = "txtPasswordCreate";
-            this.txtPasswordCreate.PasswordChar = '*';
-            this.txtPasswordCreate.Size = new System.Drawing.Size(164, 29);
-            this.txtPasswordCreate.TabIndex = 2;
+            this.txtRoleNameCreateRole.Location = new System.Drawing.Point(203, 49);
+            this.txtRoleNameCreateRole.Name = "txtRoleNameCreateRole";
+            this.txtRoleNameCreateRole.Size = new System.Drawing.Size(164, 29);
+            this.txtRoleNameCreateRole.TabIndex = 6;
             // 
-            // label2
+            // txtUsernameCreateRole
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(199, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 21);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Contraseña";
+            this.txtUsernameCreateRole.Location = new System.Drawing.Point(9, 49);
+            this.txtUsernameCreateRole.Name = "txtUsernameCreateRole";
+            this.txtUsernameCreateRole.Size = new System.Drawing.Size(165, 29);
+            this.txtUsernameCreateRole.TabIndex = 5;
             // 
-            // btnSendCreate
+            // label9
             // 
-            this.btnSendCreate.Location = new System.Drawing.Point(449, 89);
-            this.btnSendCreate.Name = "btnSendCreate";
-            this.btnSendCreate.Size = new System.Drawing.Size(102, 35);
-            this.btnSendCreate.TabIndex = 4;
-            this.btnSendCreate.Text = "Enviar";
-            this.btnSendCreate.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(383, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 21);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Confirmar";
-            // 
-            // txtConfirmPasswordCreate
-            // 
-            this.txtConfirmPasswordCreate.Location = new System.Drawing.Point(387, 54);
-            this.txtConfirmPasswordCreate.Name = "txtConfirmPasswordCreate";
-            this.txtConfirmPasswordCreate.PasswordChar = '*';
-            this.txtConfirmPasswordCreate.Size = new System.Drawing.Size(164, 29);
-            this.txtConfirmPasswordCreate.TabIndex = 6;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(145, 21);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Nombre de usuario";
             // 
             // groupBox2
             // 
@@ -166,6 +209,23 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cambiar Contraseña";
+            // 
+            // txtPasswordConfirmChangePassword
+            // 
+            this.txtPasswordConfirmChangePassword.Location = new System.Drawing.Point(203, 127);
+            this.txtPasswordConfirmChangePassword.Name = "txtPasswordConfirmChangePassword";
+            this.txtPasswordConfirmChangePassword.PasswordChar = '*';
+            this.txtPasswordConfirmChangePassword.Size = new System.Drawing.Size(164, 29);
+            this.txtPasswordConfirmChangePassword.TabIndex = 8;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(199, 103);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(213, 21);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Confirmar Contraseña Nueva";
             // 
             // txtPasswordNewChangePassword
             // 
@@ -225,65 +285,6 @@
             this.label6.Size = new System.Drawing.Size(145, 21);
             this.label6.TabIndex = 0;
             this.label6.Text = "Nombre de usuario";
-            // 
-            // txtPasswordConfirmChangePassword
-            // 
-            this.txtPasswordConfirmChangePassword.Location = new System.Drawing.Point(203, 127);
-            this.txtPasswordConfirmChangePassword.Name = "txtPasswordConfirmChangePassword";
-            this.txtPasswordConfirmChangePassword.PasswordChar = '*';
-            this.txtPasswordConfirmChangePassword.Size = new System.Drawing.Size(164, 29);
-            this.txtPasswordConfirmChangePassword.TabIndex = 8;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(199, 103);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(213, 21);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Confirmar Contraseña Nueva";
-            // 
-            // label8
-            // 
-            this.label8.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(199, 25);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 21);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Rol";
-            // 
-            // txtRoleNameCreateRole
-            // 
-            this.txtRoleNameCreateRole.Location = new System.Drawing.Point(203, 49);
-            this.txtRoleNameCreateRole.Name = "txtRoleNameCreateRole";
-            this.txtRoleNameCreateRole.Size = new System.Drawing.Size(164, 29);
-            this.txtRoleNameCreateRole.TabIndex = 6;
-            // 
-            // txtUsernameCreateRole
-            // 
-            this.txtUsernameCreateRole.Location = new System.Drawing.Point(9, 49);
-            this.txtUsernameCreateRole.Name = "txtUsernameCreateRole";
-            this.txtUsernameCreateRole.Size = new System.Drawing.Size(165, 29);
-            this.txtUsernameCreateRole.TabIndex = 5;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 25);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(145, 21);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Nombre de usuario";
-            // 
-            // btnSendRole
-            // 
-            this.btnSendRole.Location = new System.Drawing.Point(449, 71);
-            this.btnSendRole.Name = "btnSendRole";
-            this.btnSendRole.Size = new System.Drawing.Size(102, 35);
-            this.btnSendRole.TabIndex = 9;
-            this.btnSendRole.Text = "Enviar";
-            this.btnSendRole.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

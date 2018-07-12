@@ -36,5 +36,33 @@ namespace WCFSecurityClient
                 Application.Exit();
             }
         }
+
+        private async void btnSendCreate_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtUsernameCreate.Text) || string.IsNullOrWhiteSpace(txtPasswordCreate.Text))
+            {
+                MessageBox.Show("debe existir un usuario y/o contraseña valida");
+                return;
+            }
+
+            if (txtPasswordCreate.Text != txtConfirmPasswordCreate.Text)
+            {
+                MessageBox.Show("Las contraseñas no son identicas");
+                return;
+            }
+
+            try
+            { 
+
+                var resultModel = await new BaseSecurityContract().CreateUser(_token, txtUsernameCreate.Text, txtConfirmPasswordCreate.Text);
+
+                MessageBox.Show(resultModel.CreateUserResult.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error:: {ex.Message}");
+            }
+
+        }
     }
 }
